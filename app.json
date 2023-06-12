@@ -27,7 +27,8 @@
       "infoPlist": {
         "NSCameraUsageDescription": "$(PRODUCT_NAME) needs access to your Camera.",
         "NSMicrophoneUsageDescription": "$(PRODUCT_NAME) needs access to your Microphone."
-      }
+      },
+      "bundleIdentifier": "com.htrowii.Hackathon"
     },
     "android": {
       "adaptiveIcon": {
@@ -42,6 +43,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "5aa805ff-1218-4d99-9f07-7d1b112ecdca"
+      }
     }
   }
 }

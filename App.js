@@ -9,7 +9,7 @@ export default function App() {
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync();
+      const { status } = await Camera.requestCameraPermissionsAsync();
       setHasPermission(status === 'granted');
     })();
   }, []);
@@ -18,7 +18,7 @@ export default function App() {
     setType((prevType) =>
       prevType === Camera.Constants.Type.back
         ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
+        : Camera.Constants.Type.back // ternary operator to check if camera is flipped
     );
   };
 
@@ -31,12 +31,11 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!!</Text>
       <Camera style={styles.camera} type={type}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
+          {/* <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
             <Text style={styles.text}>Flip Camera</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
       </Camera>
       <StatusBar style="auto" />
@@ -47,13 +46,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
   camera: {
-    flex: 1,
-    width: '100%',
+    flex: 0,
+    width: '80%',
+    height: '50%',
   },
   buttonContainer: {
     position: 'absolute',
@@ -61,10 +61,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     width: '100%',
-    padding: 20,
+    padding: 50,
   },
   button: {
-    flex: 0.1,
+    flex: 1,
     alignSelf: 'flex-end',
     alignItems: 'center',
   },
