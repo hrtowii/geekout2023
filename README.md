@@ -1,1 +1,0 @@
-# Hackathon project for GeekOut2023, group 4
