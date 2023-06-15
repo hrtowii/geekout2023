@@ -41,6 +41,10 @@ app.get("/", (req, res) => {
   res.render("homepage.ejs");
 });
 
+app.get("/cards", (req, res) => {
+  res.render("cards.ejs");
+});
+
 //CRUD API routes for comments
 
 //retrieve comments
@@ -79,34 +83,35 @@ app.put("/api/comments/like/:id", async (req, res) => {
 //API routes for flashcard algorithm
 
 //create cards so we have content to work with
-app.get("/createDeck", async (req, res) => {
-  const cardDeck = require("./chemistry");
-  const deckOne = new Deck({
-    cards: [],
-  });
-  for (let i = 0; i <= cardDeck.notes.length - 1; i++) {
-    const question = cardDeck.notes[i].fields[0];
-    const answer = cardDeck.notes[i].fields[1];
-    const cardOne = new Card({
-      question: question,
-      answer: answer,
-      type: 3,
-      step: 0,
-      interval: 0,
-      ease: 2.5,
-      dueDate: currentDate(),
-      deck: deckOne._id,
-    });
-    await cardOne.save();
-    deckOne.cards.push(cardOne._id);
-  }
-  await deckOne.save();
-  res.send(deckOne);
-});
+// app.get("/createDeck", async (req, res) => {
+//   const cardDeck = require("./chemistry");
+//   const deckOne = new Deck({
+//     cards: [],
+//   });
+//   for (let i = 0; i <= cardDeck.notes.length - 1; i++) {
+//     const question = cardDeck.notes[i].fields[0];
+//     const answer = cardDeck.notes[i].fields[1];
+//     const cardOne = new Card({
+//       question: question,
+//       answer: answer,
+//       type: 3,
+//       step: 0,
+//       interval: 0,
+//       ease: 2.5,
+//       dueDate: currentDate(),
+//       deck: deckOne._id,
+//     });
+//     await cardOne.save();
+//     deckOne.cards.push(cardOne._id);
+//   }
+//   await deckOne.save();
+//   res.send(deckOne);
+// });
 
 //load cards
 app.get("/api/cards", async (req, res) => {
-  const deck = await Deck.find({})[0];
+  const deck = await Deck.find({});
+  console.log(deck);
   res.send(deck);
 });
 

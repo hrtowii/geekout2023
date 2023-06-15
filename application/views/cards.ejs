@@ -1,0 +1,50 @@
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+<div id="app">
+  <!-- LOADING QUESTIONS + MIDDLE DISPLAY -->
+  <div class="container">
+    <!-- MIDDLE DISPLAY -->
+    <div class="row roboto-light" id="middleDisplay">
+      <div
+        class="text-center d-flex justify-content-center align-items-center"
+        style="height: 70vh"
+      >
+        <div class="card">
+          <div class="card-body">hello</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- BOTTOM display -->
+  <div class="container fixed-bottom p-3" id="bottomDisplay"></div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+  crossorigin="anonymous"
+/>
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+  crossorigin="anonymous"
+></script>
+<script>
+  const { createApp, defineAsyncComponent } = Vue;
+
+  createApp({
+    mounted() {
+      this.getCards();
+    },
+    data() {
+      return { cards: [] };
+    },
+    methods: {
+      async getCards() {
+        const deckofCards = await axios.get("/api/cards");
+        this.cards = deckofCards.data[0].cards;
+      },
+    },
+  }).mount("#app");
+</script>
