@@ -1,0 +1,5 @@
+pandas
+plotly
+openai
+streamlit
+streamlit-chat
