@@ -6,10 +6,10 @@ import toml
 
 # load environment variables
 # Opening a Toml file using tomlib
-toml_dict = toml.load('SECRETS.toml')
-OPENAI_API_KEY = toml_dict['openai_api_key']
+# toml_dict = toml.load('SECRETS.toml')
+# OPENAI_API_KEY = toml_dict['openai_api_key']
 
-openai.api_key = OPENAI_API_KEY
+openai.api_key = st.secrets["openai_api_key"]
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []
