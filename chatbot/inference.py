@@ -1,8 +1,11 @@
 import openai
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
+OPENAI_API_KEY = os.getenv('chatgpt_key')
 
-api_key = "cant see"
-openai.api_key = api_key
+openai.api_key = OPENAI_API_KEY
 
 response = openai.Completion.create(
   engine="text-davinci-003",  # Use "text-davinci-003" for ChatGPT

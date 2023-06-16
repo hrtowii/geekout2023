@@ -11,7 +11,7 @@ def main():
     ### charts of student progress in this week
     ### -------------------------------------------------
 
-    # numerical summary 
+    ### numerical summary 
     col1, col2, col3 = st.columns([50,20,20])
     col1.write("You are very productive so far this week. Keep it up!")
     col2.metric("Minutes", 420, delta='+30 from last week', delta_color="normal", 
@@ -55,8 +55,6 @@ def main():
 
     st.plotly_chart(fig, use_container_width=True)
 
-
-    ### bar chart: subject strength
     df = pd.DataFrame({
         'Subject': ['Phy', 'Chem', 'Math', 'Econs'],
         'Strength': [-0.3, 0.2, 0, 0.7],
@@ -65,13 +63,15 @@ def main():
     st.plotly_chart(fig, use_container_width=True)
 
 
-    # Line chart: ratio of questions gotten right per day
+    ### Line chart: ratio of questions gotten right per day
     df = pd.DataFrame({
         'Day': ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
         'Ratio': [0.5, 0.6, 0.7, 0.8, 0.9, 0.7, 0.8],
     })
     fig = px.line(df, x='Day', y='Ratio', title='Ratio of Questions Gotten Right This Week')
     st.plotly_chart(fig, use_container_width=True)
+
+    
 
 
 if __name__ == "__main__":
