@@ -3,10 +3,12 @@ import streamlit as st
 from streamlit_chat import message
 import os
 from dotenv import load_dotenv
+import toml
 
 # load environment variables
-load_dotenv()
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+# Opening a Toml file using tomlib
+toml_dict = toml.load('SECRETS.toml')
+OPENAI_API_KEY = toml_dict['openai_api_key']
 
 openai.api_key = OPENAI_API_KEY
 
