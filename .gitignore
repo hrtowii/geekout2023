@@ -4,3 +4,4 @@ config.cfg
 env
 package-lock.json
 secrets.toml
+SECRETS.toml
