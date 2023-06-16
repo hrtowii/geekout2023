@@ -3,4 +3,3 @@ plotly
 openai
 streamlit
 streamlit-chat
-dotenv
