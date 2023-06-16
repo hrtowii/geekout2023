@@ -36,14 +36,6 @@ def main():
     # container for text box
     container = st.container()
 
-    # # make chat container stick to bottom
-    # container.empty()
-    # container.markdown("""<style>
-    # .main {
-    #     bottom: 0px;
-    # }
-    # </style>""", unsafe_allow_html=True)
-
     with container:
         with st.form(key='my_form', clear_on_submit=True):
             user_input = st.text_input("You:", key='input')
