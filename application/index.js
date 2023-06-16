@@ -38,11 +38,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/", (req, res) => {
-  res.render("homepage.ejs");
-});
-
-app.get("/cards", (req, res) => {
-  res.render("cards.ejs");
+  res.render("comments.ejs");
 });
 
 //CRUD API routes for comments
@@ -80,9 +76,9 @@ app.put("/api/comments/like/:id", async (req, res) => {
   res.send(thisComment);
 });
 
-//API routes for flashcard algorithm
+//API routes for flashcard algorithm - implemented halfway, not implemented in front end
 
-//create cards so we have content to work with
+//create cards so we have content to work with (test data)
 // app.get("/createDeck", async (req, res) => {
 //   const cardDeck = require("./chemistry");
 //   const deckOne = new Deck({
