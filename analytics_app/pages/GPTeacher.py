@@ -5,11 +5,11 @@ import os
 import toml
 
 # load environment variables
-# Opening a Toml file using tomlib
-# toml_dict = toml.load('SECRETS.toml')
-# OPENAI_API_KEY = toml_dict['openai_api_key']
+toml_dict = toml.load('SECRETS.toml')
+OPENAI_API_KEY = toml_dict['openai_api_key']
+# OPENAI_API_KEY = st.secrets["openai_api_key"] 
 
-openai.api_key = st.secrets["openai_api_key"]
+openai.api_key = OPENAI_API_KEY
 
 if 'messages' not in st.session_state:
     st.session_state['messages'] = []
@@ -18,10 +18,11 @@ def generate_response(prompt):
     st.session_state['messages'].append({"role": "user", "content": prompt})
 
     completion = openai.Completion.create(
-        engine="text-davinci-003",  # Use "text-davinci-003" for ChatGPT
+        engine="text-davinci-002",  # Use "text-davinci-003" for ChatGPT
         max_tokens=50,
-        prompt=st.session_state['messages'][-1]['content']
+        prompt=prompt
     )
+    print(completion)
     response = completion.choices[0].text.strip()
     st.session_state['messages'].append({"role": "bot", "content": response})
 
@@ -35,13 +36,13 @@ def main():
     # container for text box
     container = st.container()
 
-    # make chat container stick to bottom
-    container.empty()
-    container.markdown("""<style>
-    .main {
-        bottom: 0px;
-    }
-    </style>""", unsafe_allow_html=True)
+    # # make chat container stick to bottom
+    # container.empty()
+    # container.markdown("""<style>
+    # .main {
+    #     bottom: 0px;
+    # }
+    # </style>""", unsafe_allow_html=True)
 
     with container:
         with st.form(key='my_form', clear_on_submit=True):
