@@ -5,9 +5,9 @@ import os
 import toml
 
 # load environment variables
-toml_dict = toml.load('SECRETS.toml')
-OPENAI_API_KEY = toml_dict['openai_api_key']
-# OPENAI_API_KEY = st.secrets["openai_api_key"] 
+# toml_dict = toml.load('SECRETS.toml')
+# OPENAI_API_KEY = toml_dict['openai_api_key']
+OPENAI_API_KEY = st.secrets["openai_api_key"] 
 
 openai.api_key = OPENAI_API_KEY
 
